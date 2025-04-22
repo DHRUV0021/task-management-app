@@ -1,0 +1,22 @@
+
+<div class="task-item" [ngClass]="'priority-' + task.priority.toLowerCase()">
+<div class="task-content">
+  <h3 class="task-title">{{ task.title }}</h3>
+  <p class="task-description">{{ task.description }}</p>
+
+  <div class="task-details">
+    <span class="task-status" [ngClass]="'status-' + task.status.toLowerCase()">
+      {{ task.status | taskStatus }}
+    </span>
+    <span class="task-priority">{{ task.priority | taskPriority }}</span>
+    <span class="task-date" *ngIf="task.dueDate">
+      Due: {{ task.dueDate | date:'mediumDate' }}
+    </span>
+  </div>
+</div>
+
+<div class="task-actions">
+  <button class="btn btn-edit" (click)="onEdit()">Edit</button>
+  <button class="btn btn-delete" (click)="onDelete()">Delete</button>
+</div>
+</div>

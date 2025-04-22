@@ -1,0 +1,46 @@
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="task-form">
+  <h2>{{ task ? 'Edit Task' : 'Add New Task' }}</h2>
+
+  <div class="form-field">
+    <label for="title">Title</label>
+    <input id="title" type="text" formControlName="title" placeholder="Task title">
+    <div class="error" *ngIf="taskForm.controls['title'].touched && taskForm.controls['title'].invalid">
+      <span *ngIf="taskForm.controls['title'].errors?.['required']">Title is required</span>
+      <span *ngIf="taskForm.controls['title'].errors?.['minlength']">Title must be at least 3 characters</span>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="description">Description</label>
+    <textarea id="description" formControlName="description" rows="3" placeholder="Task description"></textarea>
+    <div class="error" *ngIf="taskForm.controls['description'].touched && taskForm.controls['description'].invalid">
+      <span *ngIf="taskForm.controls['description'].errors?.['required']">Description is required</span>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-field">
+      <label for="status">Status</label>
+      <select id="status" formControlName="status">
+        <option *ngFor="let status of statuses" [value]="status">{{ status | taskStatus }}</option>
+      </select>
+    </div>
+
+    <div class="form-field">
+      <label for="priority">Priority</label>
+      <select id="priority" formControlName="priority">
+        <option *ngFor="let priority of priorities" [value]="priority">{{ priority | taskPriority }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="dueDate">Due Date (optional)</label>
+    <input id="dueDate" type="date" formControlName="dueDate">
+  </div>
+
+  <div class="form-actions">
+    <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    <button type="submit" class="btn btn-primary" [disabled]="taskForm.invalid">Save</button>
+  </div>
+</form>

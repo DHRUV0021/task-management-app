@@ -1,0 +1,62 @@
+<div class="dashboard-container">
+  <h1>Dashboard</h1>
+
+  <div class="stats-cards">
+    <div class="stat-card">
+      <h3>Total Tasks</h3>
+      <div class="stat-value">{{ totalTasks }}</div>
+    </div>
+
+    <div class="stat-card">
+      <h3>To Do</h3>
+      <div class="stat-value todo">{{ statusCounts().todo }}</div>
+    </div>
+
+    <div class="stat-card">
+      <h3>In Progress</h3>
+      <div class="stat-value in-progress">{{ statusCounts().inProgress }}</div>
+    </div>
+
+    <div class="stat-card">
+      <h3>Done</h3>
+      <div class="stat-value done">{{ statusCounts().done }}</div>
+    </div>
+  </div>
+
+  <div class="charts-container">
+    <div class="chart-row">
+      <div class="chart-column">
+        <div class="chart-container">
+          <h2>Tasks by Status</h2>
+          <canvas baseChart #statusChart
+            [data]="statusChartData()"
+            [type]="statusChartType"
+            [options]="doughnutOptions">
+          </canvas>
+        </div>
+      </div>
+      <div class="chart-column">
+        <div class="chart-container">
+          <h2>Tasks by Priority</h2>
+          <canvas baseChart #priorityChart
+            [data]="priorityChartData"
+            [type]="priorityChartType"
+            [options]="barOptions">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-column full-width">
+        <div class="chart-container">
+          <h2>Tasks Created (Last 7 Days)</h2>
+          <canvas baseChart #timelineChart
+            [data]="timelineChartData()"
+            [type]="timelineChartType"
+            [options]="lineOptions">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

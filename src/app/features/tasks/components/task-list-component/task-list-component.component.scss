@@ -1,0 +1,18 @@
+.task-list-container {
+  h1 {
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+
+  .task-list {
+    margin-top: 1rem;
+  }
+
+  .no-tasks {
+    text-align: center;
+    padding: 2rem;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    color: #666;
+  }
+}

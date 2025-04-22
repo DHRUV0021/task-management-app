@@ -1,0 +1,24 @@
+<div class="task-list-container">
+  <h1>Task Management</h1>
+
+  <app-task-form
+    [task]="selectedTask()"
+    (save)="selectedTask() ? onUpdateTask($event) : onAddTask($event)"
+    (cancel)="onCancelEdit()">
+  </app-task-form>
+
+  <div class="task-list" *ngIf="tasks().length > 0; else noTasks">
+    <app-task-item
+      *ngFor="let task of tasks()"
+      [task]="task"
+      (edit)="onEditTask($event)"
+      (delete)="onDeleteTask($event)">
+    </app-task-item>
+  </div>
+
+  <ng-template #noTasks>
+    <div class="no-tasks">
+      <p>No tasks available. Create your first task!</p>
+    </div>
+  </ng-template>
+</div>
